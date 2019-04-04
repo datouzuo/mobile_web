@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xin.mengzuo.dao.MouthMapper" >
+  <resultMap id="BaseResultMap" type="xin.mengzuo.pojo.Mouth" >
+    <id column="year_mouth" property="yearMouth" jdbcType="VARCHAR" />
+    <result column="total_money" property="totalMoney" jdbcType="DOUBLE" />
+    <result column="mouth_percentage" property="mouthPercentage" jdbcType="DOUBLE" />
+    <result column="total_consum" property="totalConsum" jdbcType="DOUBLE" />
+    <result column="identity" property="identity" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    year_mouth, total_money, mouth_percentage, total_consum, identity
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xin.mengzuo.pojo.MouthExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mouth
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from mouth
+    where year_mouth = #{yearMouth,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from mouth
+    where year_mouth = #{yearMouth,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="xin.mengzuo.pojo.MouthExample" >
+    delete from mouth
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xin.mengzuo.pojo.Mouth" >
+    insert into mouth (year_mouth, total_money, mouth_percentage, 
+      total_consum, identity)
+    values (#{yearMouth,jdbcType=VARCHAR}, #{totalMoney,jdbcType=DOUBLE}, #{mouthPercentage,jdbcType=DOUBLE}, 
+      #{totalConsum,jdbcType=DOUBLE}, #{identity,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="xin.mengzuo.pojo.Mouth" >
+    insert into mouth
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yearMouth != null" >
+        year_mouth,
+      </if>
+      <if test="totalMoney != null" >
+        total_money,
+      </if>
+      <if test="mouthPercentage != null" >
+        mouth_percentage,
+      </if>
+      <if test="totalConsum != null" >
+        total_consum,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yearMouth != null" >
+        #{yearMouth,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMoney != null" >
+        #{totalMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="mouthPercentage != null" >
+        #{mouthPercentage,jdbcType=DOUBLE},
+      </if>
+      <if test="totalConsum != null" >
+        #{totalConsum,jdbcType=DOUBLE},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xin.mengzuo.pojo.MouthExample" resultType="java.lang.Integer" >
+    select count(*) from mouth
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update mouth
+    <set >
+      <if test="record.yearMouth != null" >
+        year_mouth = #{record.yearMouth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalMoney != null" >
+        total_money = #{record.totalMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.mouthPercentage != null" >
+        mouth_percentage = #{record.mouthPercentage,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalConsum != null" >
+        total_consum = #{record.totalConsum,jdbcType=DOUBLE},
+      </if>
+      <if test="record.identity != null" >
+        identity = #{record.identity,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update mouth
+    set year_mouth = #{record.yearMouth,jdbcType=VARCHAR},
+      total_money = #{record.totalMoney,jdbcType=DOUBLE},
+      mouth_percentage = #{record.mouthPercentage,jdbcType=DOUBLE},
+      total_consum = #{record.totalConsum,jdbcType=DOUBLE},
+      identity = #{record.identity,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xin.mengzuo.pojo.Mouth" >
+    update mouth
+    <set >
+      <if test="totalMoney != null" >
+        total_money = #{totalMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="mouthPercentage != null" >
+        mouth_percentage = #{mouthPercentage,jdbcType=DOUBLE},
+      </if>
+      <if test="totalConsum != null" >
+        total_consum = #{totalConsum,jdbcType=DOUBLE},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=INTEGER},
+      </if>
+    </set>
+    where year_mouth = #{yearMouth,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xin.mengzuo.pojo.Mouth" >
+    update mouth
+    set total_money = #{totalMoney,jdbcType=DOUBLE},
+      mouth_percentage = #{mouthPercentage,jdbcType=DOUBLE},
+      total_consum = #{totalConsum,jdbcType=DOUBLE},
+      identity = #{identity,jdbcType=INTEGER}
+    where year_mouth = #{yearMouth,jdbcType=VARCHAR}
+  </update>
+</mapper>
