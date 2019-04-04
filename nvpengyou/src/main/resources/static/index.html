@@ -74,7 +74,7 @@
 
 							$
 									.post(
-											"http://www.mengzuo.xin:8080/login",
+											"http://www.mengzuo.xin:8082/login",
 											{
 												"phone" : phone,
 												"password" : password
@@ -155,7 +155,7 @@
 		function monym() {
 			var money = $('#recipient-name2').val();
 
-			$.get("http://www.mengzuo.xin:8080/item/addmoney?money=" + money, null,
+			$.get("http://www.mengzuo.xin:8082/item/addmoney?money=" + money, null,
 					function(data) {
 						if (data.status == 200) {
 							allMouth();
@@ -238,7 +238,7 @@
 				var day = "";
 				$
 						.get(
-								"http://www.mengzuo.xin:8080/item/selectday?day="
+								"http://www.mengzuo.xin:8082/item/selectday?day="
 										+ day1,
 								null,
 								function(data) {
@@ -300,7 +300,7 @@
 				var day = "";
 				$
 						.get(
-								"http://www.mengzuo.xin:8080/item/findMonth",
+								"http://www.mengzuo.xin:8082/item/findMonth",
 								null,
 								function(data) {
 									if (data.status == 200) {
@@ -351,7 +351,7 @@
 				var day = "";
 				$
 						.get(
-								"http://www.mengzuo.xin:8080/item/findDayList?yearMouth="
+								"http://www.mengzuo.xin:8082/item/findDayList?yearMouth="
 										+ mouth,
 								null,
 								function(data) {
@@ -499,7 +499,7 @@ style="height: 340px;">
 	<script type="text/javascript">
 		window.onload = function() {
 
-			$.get("http://www.mengzuo.xin:8080/item/all", null, function(data) {
+			$.get("http://www.mengzuo.xin:8082/item/all", null, function(data) {
 				if (data.status == 200) {
 					if (data.data != null && data.data != "") {
 						var remain1 = data.data.totalMoney
@@ -556,7 +556,7 @@ style="height: 340px;">
 		var describle = $('#message-text').val();
 		var consume = $('#recipient-name1').val();
 
-		$.get("http://www.mengzuo.xin:8080/item/add?consume=" + consume
+		$.get("http://www.mengzuo.xin:8082/item/add?consume=" + consume
 				+ "&&description=" + describle, null, function(data) {
 			if (data.status == 200) {
 				$('#recipient-name1').val("");
@@ -579,7 +579,7 @@ style="height: 340px;">
 <script>
 	function allMouth() {
 
-		$.get("http://www.mengzuo.xin:8080/item/all", null, function(data) {
+		$.get("http://www.mengzuo.xin:8082/item/all", null, function(data) {
 			if (data.status == 200) {
 				if (data.data != null && data.data != "") {
 					var remain1 = data.data.totalMoney - data.data.totalConsum;
