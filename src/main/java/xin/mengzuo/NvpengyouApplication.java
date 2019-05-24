@@ -9,7 +9,7 @@ import xin.mengzuo.config.MvcConfigurer;
 
 @SpringBootApplication
 public class NvpengyouApplication {
-//测试提交
+//测试提
 	public static void main(String[] args) {
 		SpringApplication.run(NvpengyouApplication.class, args);
 	}
